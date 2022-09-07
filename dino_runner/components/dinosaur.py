@@ -1,7 +1,8 @@
+import pygame
 from unittest.mock import DEFAULT
 from pygame.sprite import Sprite
 
-from utils.constants import DEFAULT_TYPE, DUCKING, DUCKING_SHIELD, JUMPING, JUMPING_SHIELD, RUNNING, RUNNING_SHIELD, SHIELD
+from utils.constants import DEFAULT_TYPE, DUCKING, DUCKING_SHIELD, JUMPING, JUMPING_SHIELD, RUNNING, RUNNING_SHIELD, SHIELD_TYPE, SHIELD
 
 class Dinosaur(Sprite):
     X_POS = 80
@@ -10,9 +11,11 @@ class Dinosaur(Sprite):
     JUMP_VEL = 8.5
     
     def __init__(self):
-        self.duck.ing = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
+        self.duck_ing = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
         self.run_ing = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD}
-        self.jump_ing = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD}
+        self.jump_ing = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD} 
+        self.type = DEFAULT_TYPE
+        self.image = self.run_ing[self.type][0]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.X_POS
         self.dino_rect.y = self.Y_POS
@@ -21,7 +24,6 @@ class Dinosaur(Sprite):
         self.dino_jump = False
         self.jump_vel = self.JUMP_VEL
         self.step_index = 0
-        self.foot = True
 
     def update(self, user_input):
        if self.dino_jump:
