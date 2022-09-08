@@ -14,6 +14,7 @@ class Game:
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.playing = False
+        self.crashed = False
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = 380
@@ -88,7 +89,13 @@ class Game:
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
 
-        text, text_rect = text_utils.get_text_element('Press any Key to Start', half_screen_width, half_screen_height)
+        text_to_show_1 = 'Press any Key to Start'
+        text_to_show_2 = 'Do you want to try again? Press any key to restart'
+        if not self.crashed:
+            text_to_show = text_to_show_1
+        else:
+            text_to_show = text_to_show_2
+        text, text_rect = text_utils.get_text_element(text_to_show, half_screen_width, half_screen_height)
 
         self.screen.blit(text, text_rect)
 
