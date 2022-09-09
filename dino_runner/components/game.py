@@ -4,7 +4,7 @@ from components.obstacle_manager import ObstacleManager
 from components.powerups.powerup_manager import PowerUpManager
 from utils import text_utils
 
-from utils.constants import BG, HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from utils.constants import BG, HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
 
 
 class Game:
@@ -56,6 +56,10 @@ class Game:
         self.dinosaur.update(user_input)
         self.obstacle_manager.update(self)
         self.powerup_manager.update(self)
+
+        if self.dinosaur.shield_time_up < pygame.time.get_ticks():
+            self.dinosaur.type = DEFAULT_TYPE
+            self.dinosaur_shield = False
 
     def draw(self):
         self.clock.tick(FPS)

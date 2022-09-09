@@ -1,7 +1,7 @@
 import pygame
 import random
 from components.cactus import Cactus
-from utils.constants import LARGE_CACTUS, SMALL_CACTUS
+from utils.constants import LARGE_CACTUS, SMALL_CACTUS, DEFAULT_TYPE
 
 
 class ObstacleManager():
@@ -24,6 +24,8 @@ class ObstacleManager():
                     game.points = 0
                 else:
                     self.obstacles.remove(obstacle)
+                    game.dinosaur.type = DEFAULT_TYPE
+                    game.dinosaur_shield = False
     
     def draw(self, screen):
         for obstacle in self.obstacles:

@@ -17,9 +17,10 @@ class PowerUpManager:
                 power_up.start_time= pygame.time.get_ticks()
                 game.dinosaur.isShieldType = True
                 game.dinosaur.type = power_up.type
-                power_up.start_time= pygame.time.get_ticks()
-                time_random = random.randrange(5,8)
-                game.dinosaur.shield_time_up = power_up.start_time + (time_random * 1000)
+                #power_up.start_time= pygame.time.get_ticks()
+                #time_random = random.randrange(5,8)
+                #game.dinosaur.shield_time_up = power_up.start_time + (time_random * 1000)
+                game.dinosaur.shield_time_up = power_up.start_time + 1000
                 game.dinosaur_shield = True
                 self.power_ups.remove(power_up)
         

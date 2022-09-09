@@ -25,6 +25,7 @@ class Dinosaur(Sprite):
         self.jump_vel = self.JUMP_VEL
         self.step_index = 0
         self.isShieldType = False
+        self.shield_time_up = 0
 
     def update(self, user_input):
        if self.dino_jump:
@@ -49,6 +50,7 @@ class Dinosaur(Sprite):
 
        if self.step_index >= 10:
             self.step_index = 0
+
 
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x , self.dino_rect.y))
